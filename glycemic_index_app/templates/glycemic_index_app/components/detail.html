@@ -1,0 +1,90 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'glycemic_index_app/css/detail.css' %}">
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+{% endblock %}
+
+{% block main %}
+<div class="main-inner">
+    <span class="main-title">Общий список > {{ notes.title }}</span>
+    <div class="main-note">
+        <form action="" id="add-form" method="post">
+            {% csrf_token %}
+            {{ form.title }}
+            <div class="note-date">{{ notes.created_at|date:"d.m.Y, H:i" }}</div>
+            {{ form.content }}
+            <div class="note-flex">
+                <span class="note-glycemia"><b>Гликемия:</b> {{ form.glycemia }}</span>
+                <span class="note-xe"><b>ХЕ:</b> {{ form.bread_units }}</span>
+            </div>  
+            <div class="note-GI">
+                <div class="note-GI-title">
+                    <h3>ГИ продуктов</h3>
+                    <button class="note-add-button" onclick="addFn()" type="button">
+                        <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10.5" cy="10.5" r="10" stroke="var(--color-text)" />
+                            <path
+                                d="M11.1923 6.69231C11.1923 6.30937 10.8829 6 10.5 6C10.1171 6 9.80769 6.30937 9.80769 6.69231V9.80769H6.69231C6.30937 9.80769 6 10.1171 6 10.5C6 10.8829 6.30937 11.1923 6.69231 11.1923H9.80769V14.3077C9.80769 14.6906 10.1171 15 10.5 15C10.8829 15 11.1923 14.6906 11.1923 14.3077V11.1923H14.3077C14.6906 11.1923 15 10.8829 15 10.5C15 10.1171 14.6906 9.80769 14.3077 9.80769H11.1923V6.69231Z"
+                                fill="var(--color-text)" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="note-GI-list" id="note-GI-list">
+                    {% for item in list %}
+                        <div class="form-GI-wrapper">
+                            <input type="number" min="0" max="150" name="glycemic-index" class="form-GI" value="{{ item }}">
+                            <button class="minus-button" onclick="delNode(this)" type="button"></button>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="conclusion-info">
+                <div class="conclusion-line">
+                    <span class="conclusion-title">Общий ГИ:</span>
+                    <span>{{ notes.general_gi }}</span>
+                </div>
+                <div class="conclusion-line">
+                    <span class="conclusion-title">Общий СИГ:</span>
+                    <span>{{ notes.general_rcg }}</span>
+                </div>
+            </div>
+            <div id="curve_chart" style="max-width: 100%;"></div>
+            {{ form.glycemic_index }}
+            {{ form.general_gi }}
+            {{ form.general_rcg }}
+            {{ form.graph }}
+            <input type="hidden" id="user_rcg" value="{{ user.rcg }}">
+            <input type="hidden" id="user_timeIn" value="{{ user.absorption_time }}">
+            <input type="hidden" id="user_buIndex" value="{{ user.bu_index }}">
+            <div class="buttons">
+                <button class="note-button" type="submit">Сохранить</button>
+                <button id="openModalBtn" type="button">Удалить</button>
+            </div>
+        </form>
+        <div id="myModal" class="modal">
+
+            <!-- Контент модального окна -->
+            <div class="modal-content">
+                <h2>Вы уверены что хотите удалить запись?</h2>
+                <p>После удаления запись будет невозозможно восстановить.</p>
+                <a href="{% url 'glycemic_index_app:delete_record' notes.pk %}" class="delete-button">Удалить</a>
+                <button class="cancel-button close">Отмена</button>
+            </div>
+    
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'glycemic_index_app/javaScript/giAddButton.js' %}"></script>
+<script src="{% static 'glycemic_index_app/javaScript/giCalculator.js' %}"></script>
+<script src="{% static 'glycemic_index_app/javaScript/detailPageAPI.js' %}"></script>
+<script src="{% static 'glycemic_index_app/javaScript/modalWindow.js' %}"></script>
+{% endblock %}

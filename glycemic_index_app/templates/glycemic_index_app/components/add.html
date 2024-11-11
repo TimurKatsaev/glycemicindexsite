@@ -1,0 +1,87 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'glycemic_index_app/css/add.css' %}">
+{% endblock %}
+
+{% block main %}
+<div class="main-inner add">
+    <span class="main-title">Добавить запись</span>
+    <h1 class="main-inner-title">Новая запись</h1>
+    <form action="" id="add-form" method="post">
+        {% csrf_token %}
+        <div class="form-item">
+            <span class="form-title">Название*</span>
+            {{ form.title }}
+        </div>
+        <div class="form-item">
+            <span class="form-title">Описание*</span>
+            {{ form.content }}
+        </div>
+        <div class="form-flex">
+            <div class="form-item glycemia">
+                <span class="form-title">Гликемия (сахар в крови)*</span>
+                {{ form.glycemia }}
+            </div>
+            <div class="form-item">
+                <span class="form-title">Хлебные единицы*</span>
+                {{ form.bread_units }}
+            </div>
+        </div>
+        <!-- {% if form.errors %}
+        <div class="error">
+            {{ form.errors }}
+        </div>
+        {% endif %} -->
+        <div class="form-item" id="note-GI-list">
+            <div style="display: flex;">
+                <span class="form-title">ГИ продукта(-ов)*</span>
+                <button class="form-add-button" onclick="addFn()" type="button">
+                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="10.5" cy="10.5" r="10" stroke="var(--color-text)" />
+                        <path
+                            d="M11.1923 6.69231C11.1923 6.30937 10.8829 6 10.5 6C10.1171 6 9.80769 6.30937 9.80769 6.69231V9.80769H6.69231C6.30937 9.80769 6 10.1171 6 10.5C6 10.8829 6.30937 11.1923 6.69231 11.1923H9.80769V14.3077C9.80769 14.6906 10.1171 15 10.5 15C10.8829 15 11.1923 14.6906 11.1923 14.3077V11.1923H14.3077C14.6906 11.1923 15 10.8829 15 10.5C15 10.1171 14.6906 9.80769 14.3077 9.80769H11.1923V6.69231Z"
+                            fill="var(--color-text)" />
+                    </svg>
+                </button>
+            </div>
+            <input required type="number" min="0" max="150" placeholder="Число" class="form-GI" id="form-GI">
+        </div>
+        {{ form.glycemic_index }}
+        {{ form.general_gi }}
+        {{ form.general_rcg }}
+        {{ form.graph }}
+        <input type="hidden" id="user_rcg" value="{{ user.rcg }}">
+        <input type="hidden" id="user_timeIn" value="{{ user.absorption_time }}">
+        <input type="hidden" id="user_buIndex" value="{{ user.bu_index }}">
+        <!-- <div class="conclusion-info">
+            <div class="conclusion-line">
+                <span class="conclusion-title">Общий ГИ:</span>
+                <span>30</span>
+            </div>
+            <div class="conclusion-line">
+                <span class="conclusion-title">Общий СИГ:</span>
+                <span>0.096 ммоль/л/мин</span>
+            </div>
+        </div> -->
+        <button class="form-button" type="submit">Добавить</button>
+    </form>
+    <div class="messages">
+        {% for field in form %}
+        {% if field.errors %}
+        <div class="message">{{ field.label }}: {{ field.errors|striptags }}</div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'glycemic_index_app/javaScript/giCalculator.js' %}"></script>
+<script src="{% static 'glycemic_index_app/javaScript/giAddButton.js' %}"></script>
+{% endblock %}

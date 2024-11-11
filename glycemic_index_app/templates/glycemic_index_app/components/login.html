@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List</title>
+    <link rel="stylesheet" href="{% static 'glycemic_index_app/css/default.css' %}">
+    <link rel="stylesheet" href="{% static 'glycemic_index_app/css/login.css' %}">
+    <script src="https://kit.fontawesome.com/c8ea1a53b8.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="extra-info">
+        </div>
+        <div class="signup-form">
+            <form class="signup-form-inner" method="post" action="{% url 'glycemic_index_app:login' %}">
+                {% csrf_token %}
+                <input type="checkbox" id="theme" class="theme-toggle">
+                <!-- <label for="theme" class="theme-button"></label> -->
+                <a href="javascript:history.back()" class="back-link">Назад</a>
+                <h1>Войти</h1>
+                {% if form.non_field_errors %}
+                    <div class="errors">
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
+                <div class="form-input flex">
+                    <div>Email</div>
+                    <input type="text" name="username" placeholder="Ваш логин">
+                </div>
+                <div class="form-input flex">
+                    <div>Пароль</div>
+                    <input type="password" name="password" placeholder="Ваш пароль">
+                </div>
+                <button class="form-button" type="submit">Войти</button>
+                <p class="form-link">Не зарегистрированы? <a
+                        href="{% url 'glycemic_index_app:signup' %}">Зарегистрироваться</a></p>
+            </form>
+        </div>
+    </div>
+    <script src="{% static 'glycemic_index_app/javaScript/switchstyle.js' %}"></script>
+</body>
+
+</html>

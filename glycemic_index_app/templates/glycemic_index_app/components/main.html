@@ -1,0 +1,72 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'glycemic_index_app/css/main.css' %}">
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+{% endblock %}
+
+{% block main %}
+<div class="div-title">Отчёт</div>
+<div class="top-side">
+    <button class="list-button show">Показать</button>
+    <button class="list-button hide">Скрыть</button>
+    <div class="list active">
+        <div class="top-card">
+            <div id="glycemia-chart"></div>
+        </div>
+        <div class="top-card">
+            <div id="glycemic-index-chart"></div>
+        </div>
+        <div class="top-card text">
+            <div class="top-card-text">
+                <div class="icon-wrapper">
+                    <svg class="main-page-advice-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2c0 0 0 0 0 0c5.2-7.1 10.4-14.2 15.4-21.4c19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3c5 7.2 10.2 14.3 15.4 21.4c0 0 0 0 0 0c19.8 27.1 39.7 54.4 49.2 86.2l160 0zM192 512c44.2 0 80-35.8 80-80l0-16-160 0 0 16c0 44.2 35.8 80 80 80zM112 176c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112c8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"/></svg>
+                </div>
+                <h3>Сочетайте углеводы с белками и жирами</h3>
+            </div>
+            <p>Белки и жиры замедляют всасывание углеводов, что помогает контролировать скачки глюкозы. Например, можно
+                добавить орехи к фруктам или съесть рыбу с овощами.</p>
+        </div>
+        <div class="top-card text">
+            <div class="top-card-text">
+                <div class="icon-wrapper">
+                    <svg class="main-page-advice-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2c0 0 0 0 0 0c5.2-7.1 10.4-14.2 15.4-21.4c19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3c5 7.2 10.2 14.3 15.4 21.4c0 0 0 0 0 0c19.8 27.1 39.7 54.4 49.2 86.2l160 0zM192 512c44.2 0 80-35.8 80-80l0-16-160 0 0 16c0 44.2 35.8 80 80 80zM112 176c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112c8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"/></svg>
+                </div>
+                <h3>Избегайте сильно обработанных продуктов</h3>
+            </div>
+            <p>Обработанные продукты, такие как сладкие напитки и выпечка, часто имеют высокий ГИ, даже если в них
+                добавлены
+                полезные ингредиенты. Предпочитайте цельные продукты с минимальной обработкой.</p>
+        </div>
+    </div>
+</div>
+<div class="div-title">Список записей</div>
+<div class="main-list">
+    {% for item in notes %}
+    <div class="card">
+        <h1 class="card-title">{{ item.title }}</h1>
+        <div class="card-date-list">
+            <span class="card-date">{{ item.created_at|date:"d.m.Y, H:i" }}</span>
+        </div>
+        <p>{{ item.content|slice:":100" }}{% if item.content|length > 100 %}...{% endif %}</p>
+        <div class="card-info-list">
+            <div class="card-info-list__item">Гликемия: {{ item.glycemia }}</div>
+            <div class="card-info-list__item">Общий ГИ: {{ item.general_gi }}</div>
+            <div class="card-info-list__item">Общий СИГ: {{ item.general_rcg }}</div>
+        </div>
+        <a href="{% url 'glycemic_index_app:note_detail' item.pk %}">Подробнее</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'glycemic_index_app/javaScript/glycemiaAPI.js' %}"></script>
+<script src="{% static 'glycemic_index_app/javaScript/glycemicIndexAPI.js' %}"></script>
+<script src="{% static 'glycemic_index_app/javaScript/mainPageButton.js' %}"></script>
+{% endblock %}

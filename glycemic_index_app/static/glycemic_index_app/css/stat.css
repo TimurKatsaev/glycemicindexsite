@@ -1,0 +1,109 @@
+.main-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px 105px 0px 50px;
+}
+
+.main-item {
+    width: 270px;
+    padding: 15px 15px 30px 15px;
+    background-color: var(--color-bg-100);
+    border-radius: 15px;
+    border: 1px solid transparent;
+
+    cursor: pointer;
+    transition: .1s linear all;
+}
+
+.main-item:hover {
+    background-color: var(--color-input);
+}
+
+.main-item.active {
+    border: 1px solid var(--color-bg-400);
+}
+
+.main-item-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.main-item-value {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 15px;
+    
+    max-width: 100%;  /* Устанавливает максимальную ширину */
+    white-space: nowrap;  /* Запрещает перенос текста на новую строку */
+    overflow: hidden;  /* Скрывает текст, выходящий за пределы блока */
+    text-overflow: ellipsis;  /* Добавляет многоточие в конце обрезанного текста */
+}
+
+/* Graph */
+
+.main-graph {
+    padding: 50px 105px 0px 50px;
+}
+
+.main-graph-title {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+#curve_chart {
+    padding-top: 30px;
+    width: 90%;
+    height: 700px;
+    margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+    .main-item{
+        width: 250px;
+    }
+    
+    .main-list{
+        gap: 10px;
+    }
+
+    .main-list, .main-graph{
+        padding-left: 130px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-list, .main-graph{
+        padding-left: 150px;
+        padding-right: 30px;
+    }
+    .main-list{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 425px) {
+    .main-list, .main-graph{
+        padding-left: 100px;
+    }
+
+    .main-item{
+        width: 200px;
+    }
+
+    .main-list{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 375px) {
+    .main-item{
+        width: 150px;
+    }
+}

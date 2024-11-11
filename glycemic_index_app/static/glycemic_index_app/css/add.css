@@ -1,0 +1,151 @@
+.main-title{
+    margin: 0;
+}
+
+.main-inner-title{
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 25px;
+}
+
+/* Form */
+
+.form-item{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.form-item.last{
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--color-bg-400);
+}
+
+.form-item input{
+    padding-right: 50px;
+}
+
+.form-title{
+    margin-bottom: 10px;
+}
+
+#form-name{
+    max-width: 250px;
+}
+
+#form-desc{
+   max-width: 500px;
+}
+
+.messages{
+    margin-top: 30px;
+}
+
+.message{
+    color: #dd473b;
+}
+
+.form-flex{
+    display: flex;
+    align-items: center;
+}
+
+.form-item.glycemia{
+    margin-right: 30px;
+}
+
+#form-clycemia{
+    max-width: 120px;
+}
+
+#form-XE{
+    max-width: 90px;
+}
+
+.form-GI{
+    width: 100px;
+    margin-top: 10px;
+    max-width: 180px;
+}
+
+.minus-button{
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: transparent;
+    border: 0;
+    background-image: url('../img/minus.svg');
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
+}
+
+.minus-button:hover{
+    background-color: transparent;
+    fill: #BCBCBC;
+}
+
+.form-add-button{
+    border: none;
+    max-width: 20px;
+    max-height: 20px;
+    padding: 0;
+    margin-left: 15px;
+}
+
+.form-add-button:hover{
+    background-color: transparent;
+}
+
+/* Conclusion */
+
+.conclusion-line{
+    display: flex;
+    margin: 8px 0;
+}
+
+.conclusion-line:first-child{
+    margin-top: 30px;
+}
+
+.conclusion-title{
+    font-weight: bold;
+    margin-right: 30px;
+}
+
+.form-button{
+    color: white;
+    border-color: var(--color-primary);
+    background-color: var(--color-primary);
+    margin-top: 30px;
+}
+
+.form-button:hover{
+    color: var(--color-primary);
+    background-color: transparent;
+    border-color: var(--color-primary);
+}
+
+.form-extra-text{
+    margin-top: 50px;
+}
+
+.form-GI-wrapper{
+    display: flex;
+    align-items: center;
+}
+
+/*  */
+/* Responsivness */
+/*  */
+
+@media (max-width:425px) {
+    body{
+        font-size: 12px;
+    }
+    .main-inner-title{
+        font-size: 20px;
+    }
+}

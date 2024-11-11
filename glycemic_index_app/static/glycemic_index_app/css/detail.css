@@ -1,0 +1,289 @@
+:active,
+:hover,
+:focus {
+    outline: 0;
+    outline-offset: 0;
+}
+
+/* .main-note input,
+.main-note textarea{
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0px;
+    margin: 0px;
+    border: 0;
+    overflow: hidden;
+} */
+
+textarea {
+    resize: none;
+    /* Убирает возможность изменения размера вручную */
+    overflow: hidden;
+    /* Скрывает прокрутку */
+}
+
+.detail-input {
+    background-color: transparent;
+    border: 0px;
+    padding: 0;
+    margin: 0;
+}
+
+.detail-glycemia {
+    font-size: 14px;
+}
+
+.title-input {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.main-note textarea {
+    margin-top: 20px;
+    width: 100%;
+    resize: none;
+}
+
+.main-title {
+    margin-left: 0px;
+}
+
+.main-desc {
+    font-size: 14px;
+    min-height: 80px;
+    margin-top: 30px;
+}
+
+.main-note {
+    margin-top: 24px;
+}
+
+.main-note-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.note-date {
+    opacity: .8;
+    margin-top: 10px;
+}
+
+.note-flex {
+    display: flex;
+    margin-top: 30px;
+}
+
+.note-glycemia {
+    margin-right: 25px;
+}
+
+.note-GI {
+    margin-top: 27px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--color-bg-400);
+}
+
+.note-GI h3 {
+    font-size: 14px;
+    opacity: .8;
+}
+
+.note-GI-list {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.form-GI-wrapper {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.form-GI {
+    width: fit-content;
+    font-size: 14px;
+    padding: 5px;
+    background-color: var(--color-input);
+    padding: 10px;
+    max-width: 50px;
+    border-radius: 5px;
+}
+
+.minus-button {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    margin-left: 10px;
+    background-color: transparent;
+    border: 0;
+    background-image: url('../img/minus.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.minus-button:hover {
+    background-color: transparent;
+    fill: #BCBCBC;
+}
+
+.form-GI-wrapper:hover {
+    cursor: pointer;
+}
+
+.note-add-button {
+    border: none;
+    max-width: 20px;
+    max-height: 20px;
+    padding: 0;
+    margin-left: 15px;
+}
+
+.buttons{
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.delete-button{
+    color: #dd473b;
+    padding: 7px 15px;
+    border: 2px solid #dd473b;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: all linear .1s;
+}
+
+.delete-button:hover{
+    color: var(--color-text);
+    background-color: #dd473b;
+}
+
+.cancel-button{
+    color: var(--color-text);
+    padding: 7px 15px;
+    border: 2px solid var(--color-text);
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 8px;
+    margin-left: 10px;
+}
+
+#openModalBtn{
+    color: #dd473b;
+    margin-left: 10px;
+    border: 2px solid #dd473b;
+}
+
+#openModalBtn:hover{
+    color: var(--color-text);
+    background-color: #dd473b;
+}
+
+.note-add-button:hover {
+    background-color: transparent;
+}
+
+/* Conclusion */
+
+.conclusion-line {
+    display: flex;
+    margin: 8px 0;
+}
+
+.conclusion-line:first-child {
+    margin-top: 30px;
+}
+
+.conclusion-title {
+    font-weight: bold;
+    margin-right: 30px;
+}
+
+#curve_chart {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 35px;
+}
+
+.note-GI-title {
+    display: flex;
+    align-items: center;
+}
+
+/* Modal window */
+
+/* Стили для модального окна */
+.modal {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed; /* Фиксированное положение */
+    z-index: 1; /* Поверх всех элементов */
+    left: 0;
+    top: 0;
+    width: 100%; /* Полная ширина */
+    height: 100%; /* Полная высота */
+    overflow: auto; /* Включить прокрутку, если нужно */
+    background-color: rgba(0, 0, 0, 0.5); /* Фон с затемнением */
+}
+
+/* Стили для контента модального окна */
+.modal-content {
+    color: var(--color-text);
+    background-color: var(--color-bg-100);
+    margin: 15% auto; /* 15% от верхнего и нижнего края экрана */
+    padding: 50px 30px;
+    width: 80%; /* Ширина модального окна */
+    max-width: 500px; /* Максимальная ширина */
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.modal-content p{
+    margin: 20px 0px 30px;
+}
+
+/* Кнопка подтверждения */
+#confirmBtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#confirmBtn:hover {
+    background-color: #45a049;
+}
+
+@media (max-width:425px) {
+    body {
+        font-size: 12px;
+    }
+
+    .main-note h1 {
+        font-size: 18px;
+    }
+
+    .note-GI h3 {
+        font-size: 12px;
+    }
+
+    .main-desc {
+        margin-top: 15px;
+    }
+
+    .note-flex {
+        margin-top: 15px;
+    }
+
+    .note-GI {
+        margin-top: 18px;
+        padding-bottom: 15px;
+    }
+}

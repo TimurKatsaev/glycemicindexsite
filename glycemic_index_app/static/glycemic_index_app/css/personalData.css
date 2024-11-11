@@ -1,0 +1,46 @@
+.personal-data-form{
+    max-width: 350px;
+}
+
+.form-title{
+    width: 200px;
+}
+
+.main-inner-title{
+    margin: 25px 0;
+}
+
+.form-item{
+    margin: 30px 0;
+}
+
+.form-item input{
+    margin-left: 30px;
+}
+
+.form-input{
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (max-width:768px) {
+    .main-inner-title{
+        font-size: 18px;
+    }
+
+    .main-wrapper {
+        width: fit-content;
+        margin: 0 auto;
+    }
+    .main-inner{
+        padding: 20px 10px 0px 100px;
+    }
+}
+
+@media (max-width:425px) {
+    .form-item input{
+        width: 70px;
+    }
+}

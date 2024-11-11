@@ -1,0 +1,16 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'glycemic_index_app/css/settings.css' %}">
+{% endblock %}
+
+{% block main %}
+    <div class="main-inner">
+        <span class="main-title">Настройки</span>
+    </div>
+{% endblock %}
